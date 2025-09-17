@@ -1,56 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Environment</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Environment Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>📚 My Study Environment</h1>
-    <nav>
-      <a href="#subjects">Subjects</a>
-      <a href="#notes">Notes</a>
-      <a href="#tasks">Tasks</a>
-    </nav>
-  </header>
+    <div class="container">
+        <header class="header">
+            <h1>📚 Study Environment Dashboard</h1>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+        </header>
 
-  <main>
-    <!-- Subjects Section -->
-    <section id="subjects">
-      <h2>Subjects</h2>
-      <ul>
-        <li>Mathematics</li>
-        <li>Physics</li>
-        <li>ICT</li>
-        <li>Chemistry</li>
-      </ul>
-    </section>
+        <div class="grid">
+            <!-- Subjects & Notes Section -->
+            <div class="card">
+                <h2><span class="icon">📖</span> Subjects & Notes</h2>
+                <div id="subjects-container">
+                    <div class="subject-item">
+                        <div class="subject-header" onclick="toggleSubject('math')">
+                            <span>Mathematics</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="subject-content" id="math-content">
+                            <textarea class="notes-textarea" placeholder="Add your math notes here..." onchange="saveNotes('math', this.value)"></textarea>
+                        </div>
+                    </div>
+                    <div class="subject-item">
+                        <div class="subject-header" onclick="toggleSubject('physics')">
+                            <span>Physics</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="subject-content" id="physics-content">
+                            <textarea class="notes-textarea" placeholder="Add your physics notes here..." onchange="saveNotes('physics', this.value)"></textarea>
+                        </div>
+                    </div>
+                    <div class="subject-item">
+                        <div class="subject-header" onclick="toggleSubject('ict')">
+                            <span>ICT</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="subject-content" id="ict-content">
+                            <textarea class="notes-textarea" placeholder="Add your ICT notes here..." onchange="saveNotes('ict', this.value)"></textarea>
+                        </div>
+                    </div>
+                    <div class="subject-item">
+                        <div class="subject-header" onclick="toggleSubject('chemistry')">
+                            <span>Chemistry</span>
+                            <span>▼</span>
+                        </div>
+                        <div class="subject-content" id="chemistry-content">
+                            <textarea class="notes-textarea" placeholder="Add your chemistry notes here..." onchange="saveNotes('chemistry', this.value)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <!-- Notes Section -->
-    <section id="notes">
-      <h2>Notes</h2>
-      <p>You can paste your notes here or link to PDFs:</p>
-      <ul>
-        <li><a href="https://example.com/math.pdf" target="_blank">Math Notes</a></li>
-        <li><a href="https://example.com/physics.pdf" target="_blank">Physics Notes</a></li>
-      </ul>
-    </section>
+            <!-- Tasks / To-Do List -->
+            <div class="card">
+                <h2><span class="icon">✅</span> Tasks & To-Do</h2>
+                <div class="task-input">
+                    <input type="text" id="task-input" placeholder="Add a new task..." onkeypress="handleTaskKeyPress(event)">
+                    <button class="btn" onclick="addTask()">Add Task</button>
+                </div>
+                <div id="tasks-container"></div>
+            </div>
 
-    <!-- Tasks Section -->
-    <section id="tasks">
-      <h2>Tasks</h2>
-      <input type="text" id="taskInput" placeholder="Add a new task...">
-      <button onclick="addTask()">Add</button>
-      <ul id="taskList"></ul>
-    </section>
-  </main>
+            <!-- Pomodoro Timer -->
+            <div class="card">
+                <h2><span class="icon">🍅</span> Pomodoro Timer</h2>
+                <div class="timer-mode">
+                    <button class="mode-btn active" onclick="setTimerMode('focus')">Focus (25m)</button>
+                    <button class="mode-btn" onclick="setTimerMode('shortBreak')">Short Break (5m)</button>
+                    <button class="mode-btn" onclick="setTimerMode('longBreak')">Long Break (15m)</button>
+                </div>
+                <div class="timer-display">
+                    <div class="timer-circle" id="timer-circle">
+                        <div class="timer-text" id="timer-text">25:00</div>
+                    </div>
+                </div>
+                <div class="timer-controls">
+                    <button class="btn btn-success" id="start-btn" onclick="startTimer()">Start</button>
+                    <button class="btn btn-warning" id="pause-btn" onclick="pauseTimer()" style="display: none;">Pause</button>
+                    <button class="btn btn-danger" onclick="resetTimer()">Reset</button>
+                </div>
+            </div>
 
-  <footer>
-    <p>Made with ❤️ for better studying</p>
-  </footer>
+            <!-- Streak Tracker -->
+            <div class="card">
+                <h2><span class="icon">🔥</span> Study Streak</h2>
+                <div class="streak-display">
+                    <div class="streak-number" id="streak-number">0</div>
+                    <div class="streak-text">Day Streak</div>
+                </div>
+                <div class="streak-actions">
+                    <button class="btn btn-success" onclick="incrementStreak()">Study Today</button>
+                    <button class="btn btn-danger" onclick="resetStreak()">Reset Streak</button>
+                </div>
+            </div>
 
-  <script src="script.js"></script>
+            <!-- AI Assistant -->
+            <div class="card">
+                <h2><span class="icon">🤖</span> AI Study Assistant</h2>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai">
+                            <strong>AI Assistant:</strong> Hello! I'm here to help you with your studies. Ask me anything about your subjects, study techniques, or general questions!
+                        </div>
+                    </div>
+                    <div class="loading" id="loading">AI is thinking...</div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-input" placeholder="Ask me anything..." onkeypress="handleChatKeyPress(event)">
+                        <button class="btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
