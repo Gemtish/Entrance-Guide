@@ -1,9 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Environment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
+  <header>
+    <h1>📚 My Study Environment</h1>
+    <nav>
+      <a href="#subjects">Subjects</a>
+      <a href="#notes">Notes</a>
+      <a href="#tasks">Tasks</a>
+    </nav>
+  </header>
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
+  <main>
+    <!-- Subjects Section -->
+    <section id="subjects">
+      <h2>Subjects</h2>
+      <ul>
+        <li>Mathematics</li>
+        <li>Physics</li>
+        <li>ICT</li>
+        <li>Chemistry</li>
+      </ul>
+    </section>
 
+    <!-- Notes Section -->
+    <section id="notes">
+      <h2>Notes</h2>
+      <p>You can paste your notes here or link to PDFs:</p>
+      <ul>
+        <li><a href="https://example.com/math.pdf" target="_blank">Math Notes</a></li>
+        <li><a href="https://example.com/physics.pdf" target="_blank">Physics Notes</a></li>
+      </ul>
+    </section>
+
+    <!-- Tasks Section -->
+    <section id="tasks">
+      <h2>Tasks</h2>
+      <input type="text" id="taskInput" placeholder="Add a new task...">
+      <button onclick="addTask()">Add</button>
+      <ul id="taskList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made with ❤️ for better studying</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
