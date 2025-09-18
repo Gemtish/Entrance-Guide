@@ -159,6 +159,344 @@
             font-family: inherit;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 3% auto;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            width: 85%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            animation: modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .close {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .modal-textarea {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            resize: vertical;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Rich text editor styles */
+        .rich-text-editor {
+            width: 100%;
+            min-height: 400px;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            outline: none;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .rich-text-editor:empty:before {
+            content: attr(placeholder);
+            color: #999;
+            font-style: italic;
+        }
+
+        .rich-text-editor:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .rich-text-editor strong {
+            font-weight: bold !important;
+            color: var(--primary-color) !important;
+        }
+
+        .rich-text-editor em {
+            font-style: italic !important;
+            color: var(--secondary-color) !important;
+        }
+
+        .rich-text-editor h1 {
+            font-size: 1.8em !important;
+            font-weight: bold !important;
+            color: var(--primary-color) !important;
+            margin: 20px 0 15px 0 !important;
+            display: block !important;
+        }
+
+        .rich-text-editor h2 {
+            font-size: 1.4em !important;
+            font-weight: bold !important;
+            color: var(--primary-color) !important;
+            margin: 15px 0 10px 0 !important;
+            display: block !important;
+        }
+
+        .rich-text-editor h3 {
+            font-size: 1.2em !important;
+            font-weight: bold !important;
+            color: var(--secondary-color) !important;
+            margin: 12px 0 8px 0 !important;
+            display: block !important;
+        }
+
+        .rich-text-editor p {
+            margin: 8px 0 !important;
+            display: block !important;
+        }
+
+        .rich-text-editor ul {
+            margin: 10px 0 !important;
+            padding-left: 25px !important;
+            display: block !important;
+        }
+
+        .rich-text-editor ol {
+            margin: 10px 0 !important;
+            padding-left: 25px !important;
+            display: block !important;
+        }
+
+        .rich-text-editor li {
+            margin: 5px 0 !important;
+            display: list-item !important;
+        }
+
+        /* Formatting toolbar */
+        .formatting-toolbar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .format-btn {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .format-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .format-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Style for formatted text display */
+        .formatted-text {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Enhanced textarea with better formatting */
+        .modal-textarea::selection {
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .modal-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Text formatting styles for notes */
+        .modal-textarea::placeholder {
+            color: var(--text-color);
+            opacity: 0.6;
+            font-style: italic;
+        }
+
+        /* Custom styling for formatted text */
+        .formatted-notes {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Bold text styling */
+        .bold-text {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Enhanced template button */
+        .template-button {
+            background: linear-gradient(135deg, var(--success-color), #059669);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+        }
+
+        .template-button:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.4);
+        }
+
+        .template-button:active {
+            transform: translateY(0);
+        }
+
+        .note-template {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: var(--text-color);
+            opacity: 0.9;
+            position: relative;
+        }
+
+        .note-template::before {
+            content: '💡';
+            position: absolute;
+            top: -8px;
+            left: 15px;
+            background: var(--card-bg);
+            padding: 0 8px;
+            font-size: 16px;
+        }
+
+        .template-button {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .template-button:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
         /* Tasks Section */
         .task-input {
             display: flex;
@@ -457,39 +795,39 @@
                 <h2><span class="icon">📖</span> Subjects & Notes</h2>
                 <div id="subjects-container">
                     <div class="subject-item">
-                        <div class="subject-header" onclick="toggleSubject('math')">
+                        <div class="subject-header" onclick="openSubjectModal('math', 'Mathematics')">
                             <span>Mathematics</span>
-                            <span>▼</span>
-                        </div>
-                        <div class="subject-content" id="math-content">
-                            <textarea class="notes-textarea" placeholder="Add your math notes here..." onchange="saveNotes('math', this.value)"></textarea>
+                            <span>📝</span>
                         </div>
                     </div>
                     <div class="subject-item">
-                        <div class="subject-header" onclick="toggleSubject('physics')">
+                        <div class="subject-header" onclick="openSubjectModal('physics', 'Physics')">
                             <span>Physics</span>
-                            <span>▼</span>
-                        </div>
-                        <div class="subject-content" id="physics-content">
-                            <textarea class="notes-textarea" placeholder="Add your physics notes here..." onchange="saveNotes('physics', this.value)"></textarea>
+                            <span>📝</span>
                         </div>
                     </div>
                     <div class="subject-item">
-                        <div class="subject-header" onclick="toggleSubject('ict')">
-                            <span>ICT</span>
-                            <span>▼</span>
-                        </div>
-                        <div class="subject-content" id="ict-content">
-                            <textarea class="notes-textarea" placeholder="Add your ICT notes here..." onchange="saveNotes('ict', this.value)"></textarea>
+                        <div class="subject-header" onclick="openSubjectModal('sat', 'SAT')">
+                            <span>SAT</span>
+                            <span>📝</span>
                         </div>
                     </div>
                     <div class="subject-item">
-                        <div class="subject-header" onclick="toggleSubject('chemistry')">
+                        <div class="subject-header" onclick="openSubjectModal('biology', 'Biology')">
+                            <span>Biology</span>
+                            <span>📝</span>
+                        </div>
+                    </div>
+                    <div class="subject-item">
+                        <div class="subject-header" onclick="openSubjectModal('english', 'English')">
+                            <span>English</span>
+                            <span>📝</span>
+                        </div>
+                    </div>
+                    <div class="subject-item">
+                        <div class="subject-header" onclick="openSubjectModal('chemistry', 'Chemistry')">
                             <span>Chemistry</span>
-                            <span>▼</span>
-                        </div>
-                        <div class="subject-content" id="chemistry-content">
-                            <textarea class="notes-textarea" placeholder="Add your chemistry notes here..." onchange="saveNotes('chemistry', this.value)"></textarea>
+                            <span>📝</span>
                         </div>
                     </div>
                 </div>
@@ -512,6 +850,8 @@
                     <button class="mode-btn active" onclick="setTimerMode('focus')">Focus (25m)</button>
                     <button class="mode-btn" onclick="setTimerMode('shortBreak')">Short Break (5m)</button>
                     <button class="mode-btn" onclick="setTimerMode('longBreak')">Long Break (15m)</button>
+                    <button class="mode-btn" onclick="setTimerMode('studySession')">Study (50m)</button>
+                    <button class="mode-btn" onclick="setTimerMode('studyBreak')">Break (10m)</button>
                 </div>
                 <div class="timer-display">
                     <div class="timer-circle" id="timer-circle">
@@ -557,6 +897,30 @@
         </div>
     </div>
 
+    <!-- Subject Notes Modal -->
+    <div id="subjectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Subject Notes</h3>
+                <span class="close" onclick="closeSubjectModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <button class="template-button" onclick="insertTemplate()">📋 Insert Note Template</button>
+                <div class="note-template">
+                    <strong>💡 Tip:</strong> Use the template button above to get started with a structured note format!
+                </div>
+                <div class="formatting-toolbar">
+                    <button class="format-btn" onclick="formatText('bold')" title="Bold">B</button>
+                    <button class="format-btn" onclick="formatText('italic')" title="Italic">I</button>
+                    <button class="format-btn" onclick="formatText('underline')" title="Underline">U</button>
+                    <button class="format-btn" onclick="insertBulletList()" title="Bullet List">•</button>
+                    <button class="format-btn" onclick="insertNumberedList()" title="Numbered List">1.</button>
+                </div>
+                <div id="modalTextarea" class="rich-text-editor" contenteditable="true" placeholder="Start typing your notes here..." oninput="saveNotesFromModal()"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Global variables
         let currentTheme = 'light';
@@ -570,7 +934,9 @@
         const timerModes = {
             focus: 25 * 60,
             shortBreak: 5 * 60,
-            longBreak: 15 * 60
+            longBreak: 15 * 60,
+            studySession: 50 * 60,
+            studyBreak: 10 * 60
         };
 
         // Initialize the application
@@ -602,19 +968,104 @@
             button.textContent = currentTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
         }
 
+        // Global variables for modal
+        let currentSubjectId = '';
+
         // Subjects & Notes Management
-        function toggleSubject(subjectId) {
-            const content = document.getElementById(subjectId + '-content');
-            const header = content.previousElementSibling;
-            const arrow = header.querySelector('span:last-child');
+        function openSubjectModal(subjectId, subjectName) {
+            currentSubjectId = subjectId;
+            document.getElementById('modalTitle').textContent = subjectName + ' Notes';
+            document.getElementById('subjectModal').style.display = 'block';
             
-            if (content.classList.contains('active')) {
-                content.classList.remove('active');
-                arrow.textContent = '▼';
-            } else {
-                content.classList.add('active');
-                arrow.textContent = '▲';
+            // Load existing notes
+            const savedNotes = localStorage.getItem('notes_' + subjectId);
+            const editor = document.getElementById('modalTextarea');
+            editor.innerHTML = savedNotes || '';
+            
+            // Focus on editor
+            setTimeout(() => editor.focus(), 100);
+        }
+
+        function closeSubjectModal() {
+            document.getElementById('subjectModal').style.display = 'none';
+            currentSubjectId = '';
+        }
+
+        function saveNotesFromModal() {
+            if (currentSubjectId) {
+                const editor = document.getElementById('modalTextarea');
+                const notes = editor.innerHTML;
+                localStorage.setItem('notes_' + currentSubjectId, notes);
             }
+        }
+
+        function formatText(command) {
+            document.execCommand(command, false, null);
+            saveNotesFromModal();
+        }
+
+        function insertBulletList() {
+            document.execCommand('insertUnorderedList', false, null);
+            saveNotesFromModal();
+        }
+
+        function insertNumberedList() {
+            document.execCommand('insertOrderedList', false, null);
+            saveNotesFromModal();
+        }
+
+        function insertTemplate() {
+            const editor = document.getElementById('modalTextarea');
+            
+            // Clear the editor first
+            editor.innerHTML = '';
+            
+            // Create the template content with improved formatting
+            const template = `<h1>📚 Study Notes</h1>
+
+<p><h2>📖 Topic:</h2> [Enter Topic Name Here]</p>
+<p><strong>📅 Date:</strong> ${new Date().toLocaleDateString()}</p>
+
+<h3>🎯 Key Concepts:</h3>
+<ul>
+<li>[Concept 1: Briefly describe]</li>
+<li>[Concept 2: Briefly describe]</li>
+<li>[Concept 3: Briefly describe]</li>
+</ul>
+
+<h3>⭐ Important Points:</h3>
+<ul>
+<li>[Point 1: Elaborate on significance]</li>
+<li>[Point 2: Elaborate on significance]</li>
+<li>[Point 3: Elaborate on significance]</li>
+</ul>
+
+<h3>💡 Examples/Applications:</h3>
+<ol>
+<li>[Example 1: Detail the scenario or problem]</li>
+<li>[Example 2: Detail the scenario or problem]</li>
+</ol>
+
+<h3>📝 Summary/Takeaways:</h3>
+<ul>
+<li>[Summary point 1]</li>
+<li>[Summary point 2]</li>
+</ul>
+
+<h3>❓ Questions for Review/Further Study:</h3>
+<ol>
+<li>[Question 1]</li>
+<li>[Question 2]</li>
+</ol>
+
+<h3>📋 Additional Notes:</h3>
+<p>[Add any additional notes, formulas, diagrams, or important information here. Use <strong>bold</strong> and <em>italic</em> for emphasis.]</p>`;
+            
+            // Set the template to the editor
+            editor.innerHTML = template;
+            
+            saveNotesFromModal();
+            editor.focus();
         }
 
         function saveNotes(subjectId, notes) {
@@ -622,15 +1073,24 @@
         }
 
         function loadNotes() {
-            const subjects = ['math', 'physics', 'ict', 'chemistry'];
-            subjects.forEach(subject => {
-                const savedNotes = localStorage.getItem('notes_' + subject);
-                if (savedNotes) {
-                    const textarea = document.querySelector(`#${subject}-content textarea`);
-                    textarea.value = savedNotes;
-                }
-            });
+            // Notes are now loaded when modal opens
+            // This function is kept for compatibility
         }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('subjectModal');
+            if (event.target === modal) {
+                closeSubjectModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeSubjectModal();
+            }
+        });
 
         // Tasks Management
         function addTask() {
